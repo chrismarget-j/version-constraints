@@ -6,13 +6,13 @@ import (
 	"github.com/hashicorp/go-version"
 )
 
-type Constraint struct {
+type Constraints struct {
 	Constraints             version.Constraints
 	ConsiderPreReleaseLabel bool
 	PermitAny               bool
 }
 
-func (o Constraint) Check(v *version.Version) bool {
+func (o Constraints) Check(v *version.Version) bool {
 	if !o.ConsiderPreReleaseLabel {
 		// drop the pre-release label
 		v = v.Core()
@@ -34,7 +34,7 @@ func (o Constraint) Check(v *version.Version) bool {
 	return false
 }
 
-func (o Constraint) String() string {
+func (o Constraints) String() string {
 	result := make([]string, len(o.Constraints))
 	for i, constraint := range o.Constraints {
 		result[i] = constraint.String()
