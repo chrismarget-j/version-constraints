@@ -42,3 +42,23 @@ func (o Constraints) String() string {
 
 	return strings.Join(result, ",")
 }
+
+func New(c string) Constraints {
+	return Constraints{
+		Constraints: version.MustConstraints(version.NewConstraint(c)),
+	}
+}
+
+func NewPrerelease(c string) Constraints {
+	return Constraints{
+		Constraints:             version.MustConstraints(version.NewConstraint(c)),
+		ConsiderPreReleaseLabel: true,
+	}
+}
+
+func NewAnyOf(c string) Constraints {
+	return Constraints{
+		Constraints: version.MustConstraints(version.NewConstraint(c)),
+		PermitAny:   true,
+	}
+}
