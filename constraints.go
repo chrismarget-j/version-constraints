@@ -1,4 +1,4 @@
-package compatibility
+package versionconstraints
 
 import (
 	"strings"
